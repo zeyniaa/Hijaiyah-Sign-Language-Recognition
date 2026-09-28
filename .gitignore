@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data & large model files
+data/raw/
+*.mp4
+*.avi
+*.mov
+*.zip
+*.tar.gz
+*.h5
+*.keras
+checkpoints/
+
+# Virtual environment
+env/
+venv/
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
