@@ -170,3 +170,17 @@ If you find this research or code useful in your work, please cite:
 - **Lajnah Pentashihan Mushaf Al-Qur'an (LPMQ) Kementerian Agama RI** for providing access to physical guideline standards and studio facilities.
 - **Majelis Taklim Tuli Indonesia (MTTI)** & **Yayasan Ibtisamah Mulia** for observational support and field insights.
 - Thesis Advisors: **Khodijah Hulliyah, M.Si., Ph.D.** & **Feri Fahrianto, M.Sc., Ph.D.**
+
+## 🖥️ Gradio Live Camera Interface
+
+The repository includes a webcam UI that uses the same MediaPipe keypoint extraction, 20-frame sequence window, and Transformer checkpoint as the real-time inference pipeline. It does not display example predictions when the model file is absent.
+
+```bash
+pip install -r requirements.txt
+# Place the trained checkpoint at checkpoints/transformer_70_30_best.h5
+python app.py
+```
+
+Open the local Gradio URL, allow camera access, and perform a gesture. Reset Sequence clears the temporal window. The model checkpoint is not stored in this repository; see data/README.md for dataset and model access notes.
+
+---
