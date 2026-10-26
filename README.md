@@ -171,16 +171,16 @@ If you find this research or code useful in your work, please cite:
 - **Majelis Taklim Tuli Indonesia (MTTI)** & **Yayasan Ibtisamah Mulia** for observational support and field insights.
 - Thesis Advisors: **Khodijah Hulliyah, M.Si., Ph.D.** & **Feri Fahrianto, M.Sc., Ph.D.**
 
-## 🖥️ Gradio Live Camera Interface
 
-The repository includes a webcam UI that uses the same MediaPipe keypoint extraction, 20-frame sequence window, and Transformer checkpoint as the real-time inference pipeline. It does not display example predictions when the model file is absent.
+## Browser workspace
+
+The project now includes a responsive HTML/CSS/JavaScript workspace served by FastAPI. Start it directly from this repository:
 
 ```bash
-pip install -r requirements.txt
-# Place the trained checkpoint at checkpoints/transformer_70_30_best.h5
+pip install -r requirements-ui.txt
 python app.py
 ```
 
-Open the local Gradio URL, allow camera access, and perform a gesture. Reset Sequence clears the temporal window. The model checkpoint is not stored in this repository; see data/README.md for dataset and model access notes.
+Open `http://127.0.0.1:7861`. Install `requirements.txt` for the complete trained-model and vision dependencies. The UI starts without a checkpoint and reports its actual availability; it never substitutes sample predictions. `MODEL_PATH` can select another checkpoint, and `LABELS_PATH` can select a JSON array of class names in the exact training-output order. Restart after changing model files. Existing CLI training and inference modules under `src/` remain available.
 
----
+The workspace supports a live camera and video uploads (MP4/WebM/MOV/AVI, up to 24 MB). MediaPipe extracts the same **75 numerical features** used by the project: 63 right-hand coordinates plus 12 right-arm pose/visibility values. Recognition uses a 20-frame sequence. Install MediaPipe 0.10.21 for its `solutions.holistic` API. Place `transformer_70_30_best.h5` in `checkpoints/`. If training used another label order, provide `checkpoints/class_names.json`; the source's default order is in `web_app.py`. Session buffers expire after five minutes. Uploaded videos are processed in a temporary directory and removed after the request.
